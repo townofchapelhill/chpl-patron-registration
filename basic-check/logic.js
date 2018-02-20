@@ -7,6 +7,8 @@ $(document).ready(function() {
     $("#state").hide();
     $("#cityLabel").hide();
     $("#stateLabel").hide();
+    $("br1").hide();
+    $("#submit").show();
     $("#zipCode").keyup(function() {
         var zip = $(this);
 
