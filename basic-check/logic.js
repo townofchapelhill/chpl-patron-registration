@@ -3,10 +3,6 @@ var patron = {};
 
 // function to fill in city & state fields upon successful entry of a valid zip code
 $(document).ready(function() {
-    $("#city").hide();
-    $("#state").hide();
-    $("#cityLabel").hide();
-    $("#stateLabel").hide();
     $("#zipCode").keyup(function() {
         var zip = $(this);
 
@@ -25,10 +21,9 @@ $(document).ready(function() {
                     $("#state").val(parsedData[2]).show();
                     $("#cityLabel").show();
                     $("#stateLabel").show();
-                    console.log(result);
                 }
             });
-        }
+        };
     });
 });
 
@@ -39,13 +34,8 @@ function captureInfo() {
     patron.zipCode = $("#zipCode").val().trim(),
     patron.city = $("#city").val().trim(),
     patron.state = $("#state").val().trim() 
-    console.log(patron);
     userDetails();
     $(".userInput").val('');
-    $("#city").hide();
-    $("#state").hide();
-    $("#cityLabel").hide();
-    $("#stateLabel").hide();
 };
 
 // Converts user input into useable query string for Arcgis API
@@ -56,7 +46,6 @@ function userDetails(address, city, state, zip) {
     var urlZip = patron.zipCode;
     
     var addressString = urlAddress + "%2C+" + urlCity + "%2C+" + urlState + "+" + urlZip;
-    console.log(addressString);
 
     // AJAX call to retrieve lat & long coordinates
     $.ajax({
@@ -66,20 +55,16 @@ function userDetails(address, city, state, zip) {
 			var result = d;
 			var xCoords = result.locations[0].feature.geometry.x;
 			var yCoords = result.locations[0].feature.geometry.y;
-            console.log(result);
-            console.log(xCoords);
-			console.log(yCoords);
 
             // Additional AJAX call to check whether sepcified address lies within correct bounndary
 			$.ajax({
 				url: "https://gisweb.townofchapelhill.org/arcgis/rest/services/CorporateData/JurisdictionalLimits/MapServer/0/query?geometry=" + xCoords + "%2C" + yCoords + "&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=false&outSR=102100&returnCountOnly=true&f=json"	
 			}).done(function(response) {
-                console.log(response);
                 // 1 for yes, 0 for no
                 if (response.count === 0) {
-                    alert("Address not within specified boundary");
+                    $("#responseInfo").text("Address not within specified boundary").css("color", "red");
                 } else {
-                    alert("Address checks out, move along");
+                    $("#responseInfo").text("Address checks out, move along").css("color", "green");
                 };
             });
 		},
