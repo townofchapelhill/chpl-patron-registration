@@ -7,11 +7,11 @@ $(document).ready(function() {
         var zip = $(this);
 
         // AJAX call to retrieve city & state info from Arcgis
-        // data is then  spilt and placed into correct fields
+        // data is then split and placed into correct fields
         if (zip.val().length === 5) {
             $.ajax({
-                url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?text=" + zip.val() + "&f=pjson",
-                cache: false,
+                url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?text=" + zip.val() + "&f=pjson",
+                // cache: false,
                 dataType: "json",
                 type: "GET",
                 success: function(result, success) {
@@ -50,7 +50,7 @@ function userDetails(address, city, state, zip) {
     // AJAX call to retrieve lat & long coordinates
     $.ajax({
 		type: "GET",
-		url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?text=" + addressString + "&f=pjson",
+		url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?text=" + addressString + "&f=pjson",
 		success: function(d) {
 			var result = d;
 			var xCoords = result.locations[0].feature.geometry.x;
@@ -64,7 +64,7 @@ function userDetails(address, city, state, zip) {
                 if (response.count === 0) {
                     $("#responseInfo").text("Address not within specified boundary").css("color", "red");
                 } else {
-                    $("#responseInfo").text("Address checks out, move along").css("color", "green");
+                    $("#responseInfo").text("\u2714 Address checks out, move along").css("color", "green");
                 };
             });
 		},

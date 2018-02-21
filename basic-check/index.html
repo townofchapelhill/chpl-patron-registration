@@ -3,23 +3,27 @@
 <head>
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="logic.js"></script>
+    <script type="text/javascript" src="assets/logic.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<title>Basic address check</title>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <title>Basic address check</title>
 </head>
 <body>
  
-    <form>
-        <label>Street Address</label><br>
+<div class="enhance">
+    <form id="gis-check">
+        <label class="info">Street Address</label><br>
         <input type="text" name="street-address" id="address" class="userInput"><br>
-        <label>Zip Code</label><br>
+        <label class="info">Zip Code</label><br>
         <input type="number" name="zip-code" id="zipCode" class="userInput"><br>
-        <label id="cityLabel">City</label><br>
+        <label id="cityLabel" class="info">City</label><br>
         <input type="text" name="city" id="city" class="userInput" disabled><br>
-        <label id="stateLabel">State</label><br>
+        <label id="stateLabel" class="info">State</label><br>
         <input type="text" name="state" id="state" class="userInput" disabled><br>
         <p id="responseInfo"></p>
-        <input type="button" value="Submit" id="submit" onclick="captureInfo()">   
-    </form>                              
+        <input type="button" value="Submit" class="btn btn-primary btn-round-lg btn-lg" id="submit" onclick="captureInfo()">   
+    </form>  
+</div>
+
 </body>
 </html>
