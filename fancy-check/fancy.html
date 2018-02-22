@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--===============================================================================================-->
+    <script type="text/javascript" src="assets/logic.js"></script>
+<!--===============================================================================================-->
+    
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+<!--===============================================================================================-->
+ 
+    <title>Fancy Address Check</title>
+</head>
+<body>
+
+<div id="google-map"></div>
+
+<div class="enhance">
+    <form id="gis-check">
+        <div id="header">
+                <h2 class="info">Patron Registration Check</h2>
+            </div>
+            <label class="info">Street Address</label><br>
+            <input type="text" name="street-address" id="address" class="userInput"><br>
+            <label class="info">Zip Code</label><br>
+            <input type="number" name="zip-code" id="zipCode" class="userInput"><br>
+            <label id="cityLabel" class="info">City</label><br>
+            <input type="text" name="city" id="city" class="userInput" disabled><br>
+            <label id="stateLabel" class="info">State</label><br>
+            <input type="text" name="state" id="state" class="userInput" disabled><br>
+            <p id="responseInfo"></p>
+            <input type="button" value="Submit" class="btn btn-primary btn-round-lg btn-lg" id="submit" onclick="captureInfo()">   
+    </form>  
+</div>
+
+
+</body>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcPivrFA6CPZQn4Wd0cBV2FzfZ4G8AalU&callback=initMap"></script>
+</html>
