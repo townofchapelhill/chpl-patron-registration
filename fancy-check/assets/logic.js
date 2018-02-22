@@ -62,9 +62,9 @@ function userDetails(address, city, state, zip) {
 			}).done(function(response) {
                 // 1 for yes, 0 for no
                 if (response.count === 0) {
-                    $("#responseInfo").text("Address not within specified boundary").css("color", "red");
+                    $("#responseInfo").text("\u2717 Address not within boundary").css("color", "red");
                 } else {
-                    $("#responseInfo").text("\u2714 Address checks out, move along").css("color", "green");
+                    $("#responseInfo").text("\u2714 Address within boundary").css("color", "green");
                 };
             });
 		},
@@ -79,15 +79,229 @@ $(document).keypress(function(e) {
     };
 });
 
+var style = [
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+        {
+            "color": "#e9e9e9"
+        },
+        {
+            "lightness": 17
+        }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+        {
+            "color": "#f5f5f5"
+        },
+        {
+            "lightness": 20
+        }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+        {
+            "color": "#ffffff"
+        },
+        {
+            "lightness": 17
+        }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+        {
+            "color": "#ffffff"
+        },
+        {
+            "lightness": 29
+        },
+        {
+            "weight": 0.2
+        }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+        {
+            "color": "#ffffff"
+        },
+        {
+            "lightness": 18
+        }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+        {
+            "color": "#ffffff"
+        },
+        {
+            "lightness": 16
+        }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+        {
+            "color": "#f5f5f5"
+        },
+        {
+            "lightness": 21
+        }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+        {
+            "color": "#dedede"
+        },
+        {
+            "lightness": 21
+        }
+        ]
+    },
+    {
+        "elementType": "labels.text.stroke",
+        "stylers": [
+        {
+            "visibility": "on"
+        },
+        {
+            "color": "#ffffff"
+        },
+        {
+            "lightness": 16
+        }
+        ]
+    },
+    {
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+            "saturation": 36
+        },
+        {
+            "color": "#333333"
+        },
+        {
+            "lightness": 40
+        }
+        ]
+    },
+    {
+        "elementType": "labels.icon",
+        "stylers": [
+        {
+            "visibility": "off"
+        }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+        {
+            "color": "#f2f2f2"
+        },
+        {
+            "lightness": 19
+        }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+        {
+            "color": "#fefefe"
+        },
+        {
+            "lightness": 20
+        }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+        {
+            "color": "#fefefe"
+        },
+        {
+            "lightness": 17
+        },
+        {
+            "weight": 1.2
+        }
+        ]
+    }
+    ];
+
 function initMap() {
-    var uluru = {lat: 35.931839, lng: -79.0365381};
+    var pubLib = {lat: 35.931839, lng: -79.0365381};
     var map = new google.maps.Map(document.getElementById('google-map'), {
       zoom: 14,
-      center: uluru
+      center: pubLib,
+      styles: style
     });
     var marker = new google.maps.Marker({
-      position: uluru,
+      position: pubLib,
       map: map
     });
-  }
+};
+
+function onlyNos(e, t) {
+
+    try {
+
+        if (window.event) {
+
+            var charCode = window.event.keyCode;
+
+        }
+
+        else if (e) {
+
+            var charCode = e.which;
+
+        }
+
+        else { return true; }
+
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+    catch (err) {
+
+        alert(err.Description);
+
+    };
+
+};
 

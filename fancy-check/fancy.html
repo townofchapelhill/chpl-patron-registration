@@ -6,8 +6,6 @@
 <!--===============================================================================================-->
     <script type="text/javascript" src="assets/logic.js"></script>
 <!--===============================================================================================-->
-    
-<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="assets/style.css">
@@ -24,16 +22,16 @@
         <div id="header">
                 <h2 class="info">Patron Registration Check</h2>
             </div>
-            <label class="info">Street Address</label><br>
-            <input type="text" name="street-address" id="address" class="userInput"><br>
-            <label class="info">Zip Code</label><br>
-            <input type="number" name="zip-code" id="zipCode" class="userInput"><br>
-            <label id="cityLabel" class="info">City</label><br>
-            <input type="text" name="city" id="city" class="userInput" disabled><br>
-            <label id="stateLabel" class="info">State</label><br>
-            <input type="text" name="state" id="state" class="userInput" disabled><br>
+            <br>
+            <input type="text" name="street-address" id="address" class="userInput" placeholder="Street Address"><br>
+            <br>
+            <input type="text" name="zip-code" id="zipCode" maxlength="5" onkeypress="return onlyNos(event,this)" class="userInput" placeholder="Zip Code"><br>
+            <br>
+            <input type="text" name="city" id="city" class="userInput2" placeholder="City" disabled><br>
+            <br>
+            <input type="text" name="state" id="state" class="userInput2" placeholder="State" disabled><br>
             <p id="responseInfo"></p>
-            <input type="button" value="Submit" class="btn btn-primary btn-round-lg btn-lg" id="submit" onclick="captureInfo()">   
+            <input type="button" value="Submit" id="submit" onclick="captureInfo()">   
     </form>  
 </div>
 
