@@ -58,9 +58,10 @@ function userDetails(address, city, state, zip) {
 
             // Additional AJAX call to check whether sepcified address lies within correct bounndary
 			$.ajax({
-				url: "https://gisweb.townofchapelhill.org/arcgis/rest/services/CorporateData/JurisdictionalLimits/MapServer/0/query?geometry=" + xCoords + "%2C" + yCoords + "&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=false&outSR=102100&returnCountOnly=true&f=json"	
+				url: "https://gisweb.townofchapelhill.org/arcgis/rest/services/CorporateData/JurisdictionalLimits/MapServer/0/query?geometry=" + xCoords + "%2C" + yCoords + "&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=true&outSR=102100&returnCountOnly=false&f=json"	
 			}).done(function(response) {
                 // 1 for yes, 0 for no
+                console.log(response)
                 if (response.count === 0) {
                     $("#responseInfo").text("\u2717 Address not within boundary").css("color", "red");
                 } else {
